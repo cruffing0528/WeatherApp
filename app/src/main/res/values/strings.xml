@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="date">Date</string>
+    <string name="city">City</string>
+    <string name="temperature">0</string>
+    <string name="weather_description">Weather Description</string>
+    <string name="degree">°F</string>
+    <string name="weather_picture">weather_picture</string>
+
+    <string name="change_locations">Change Locations</string>
+
+</resources>
