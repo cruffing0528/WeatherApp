@@ -120,8 +120,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun displayLocationsList() {
-
-
+        // test
     }
 
 
