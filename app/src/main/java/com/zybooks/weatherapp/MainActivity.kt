@@ -42,6 +42,15 @@ class MainActivity : AppCompatActivity() {
 
         // Registering a context menu when the user clicks on the city name
         registerForContextMenu(cityTextview)
+
+//        // Adding City fragment to the activity
+//        if (savedInstanceState == null) {
+//            val fragmentTransaction = supportFragmentManager.beginTransaction()
+//            fragmentTransaction.setReorderingAllowed(true)
+//                .add(R.id.fragmentContainerView, CityFragment::class.java, null)
+//                .commit()
+//        }
+
     }
 
     // This function retrieves weather data from a weather API, parses the JSON response, and updates
@@ -111,16 +120,19 @@ class MainActivity : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.change_locations -> {
-                // Call displayLocationsList() function to display a list of locations to choose from
-                // displayLocationsList()
+                // Call showCityListFragment() function to display a list of locations to choose from
+                showCityListFragment()
                 true
             }
             else -> super.onContextItemSelected(item)
         }
     }
 
-    fun displayLocationsList() {
-        // test
+    fun showCityListFragment() {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentContainerView, CityFragment())
+            commit()
+        }
     }
 
 

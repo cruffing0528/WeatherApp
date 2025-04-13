@@ -8,5 +8,23 @@
     <string name="weather_picture">weather_picture</string>
 
     <string name="change_locations">Change Locations</string>
+    <string name="city_name">city name</string>
+
+    <string-array name="Cities">
+        <item>New York</item>
+        <item>Los Angeles</item>
+        <item>Chicago</item>
+        <item>Houston</item>
+        <item>Phoenix</item>
+        <item>Philadelphia</item>
+        <item>San Antonio</item>
+        <item>San Diego</item>
+        <item>Dallas</item>
+        <item>San Jose</item>
+        <item>Austin</item>
+        <item>London</item>
+        <item>Paris</item>
+        <item>Tokyo</item>
+    </string-array>
 
 </resources>
