@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="city_text_color">#CFE9E9</color>
+    <color name="fragment_color">#FFEBEE</color>
 </resources>

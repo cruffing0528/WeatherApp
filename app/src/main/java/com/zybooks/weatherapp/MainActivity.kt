@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var weatherTextview: TextView
     private lateinit var weatherImageview: ImageView
 
-    val url = "http://api.openweathermap.org/data/2.5/weather?q=San Diego&appid=97d7fec7fb5625168efda6ff1f0a2b9b&units=Imperial"
+    private val url = "http://api.openweathermap.org/data/2.5/weather?q=San Diego&appid=97d7fec7fb5625168efda6ff1f0a2b9b&units=Imperial"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,20 +43,12 @@ class MainActivity : AppCompatActivity() {
         // Registering a context menu when the user clicks on the city name
         registerForContextMenu(cityTextview)
 
-//        // Adding City fragment to the activity
-//        if (savedInstanceState == null) {
-//            val fragmentTransaction = supportFragmentManager.beginTransaction()
-//            fragmentTransaction.setReorderingAllowed(true)
-//                .add(R.id.fragmentContainerView, CityFragment::class.java, null)
-//                .commit()
-//        }
-
     }
 
     // This function retrieves weather data from a weather API, parses the JSON response, and updates
     // UI elements (TextViews and an ImageView) to display the temperature, city, date, weather description,
     // and a weather icon. It also includes error handling for both JSON parsing issues and network/server request failures.
-    fun getWeather() {
+    private fun getWeather() {
 
         val queue = Volley.newRequestQueue(this)
         Log.d("CLAIRE WEATHER", "getWeather called")
@@ -104,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         queue.add(requestObject)
     }
 
-    fun getDate(): String {
+    private fun getDate(): String {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("EEEE, MMMM dd")
         val formattedDate = dateFormat.format(calendar.time)
@@ -128,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showCityListFragment() {
+    private fun showCityListFragment() {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainerView, CityFragment())
             commit()

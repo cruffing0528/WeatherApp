@@ -25,6 +25,10 @@
         <item>London</item>
         <item>Paris</item>
         <item>Tokyo</item>
+        <item>Berlin</item>
+        <item>Sacramento</item>
+        <item>Folsom</item>
+        <item>Boca Raton</item>
     </string-array>
 
 </resources>
