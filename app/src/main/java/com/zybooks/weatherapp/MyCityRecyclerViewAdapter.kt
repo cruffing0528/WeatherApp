@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
+// This RecyclerView adapter is used to display a list of cities
 
 class MyCityRecyclerViewAdapter(private val cities: MutableList<City>, private val onClickListener: View.OnClickListener) :
     RecyclerView.Adapter<MyCityRecyclerViewAdapter.CityViewHolder>() {
@@ -24,12 +25,13 @@ class MyCityRecyclerViewAdapter(private val cities: MutableList<City>, private v
             cityNameTextView = itemView.findViewById(R.id.city_name)
         }
 
+        // binding the viewHolder to update the views with the data from the City object
         fun bind(city: City) {
             cityNameTextView.text = city.cityName
         }
     }
 
-    // Create new views (invoked by the layout manager)
+    // Create new views to represent each city
     override fun onCreateViewHolder(parentView: ViewGroup, viewType: Int): CityViewHolder {
         // defines the UI of the list item
         val layoutInflater = LayoutInflater.from(parentView.context)
@@ -40,7 +42,7 @@ class MyCityRecyclerViewAdapter(private val cities: MutableList<City>, private v
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: CityViewHolder, position: Int) {
 
-        // Get city from cities array at this position and replace the
+        // Get the city from cities array at this position and replace the
         // contents of the view with that element
         val city = cities[position]
         viewHolder.bind(city)

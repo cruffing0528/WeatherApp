@@ -10,7 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 
 /**
- * A fragment representing a list of Items.
+ * A fragment representing a list of Cities. It inflates the fragment_item_list layout,
+ * retrieves city data from the City Repository, and sets up a RecyclerView to display the list of cities.
  */
 class CityFragment : Fragment() {
 
@@ -26,7 +27,7 @@ class CityFragment : Fragment() {
 
         }
 
-        // Set the recyclerView. android.R.id.list is for ListFragment's MyCityRecyclerView
+        // Set the recyclerView android.R.id.list is for ListFragment's MyCityRecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.city_list)
         val cities = CityRepository.getInstance(requireContext()).cityList
 

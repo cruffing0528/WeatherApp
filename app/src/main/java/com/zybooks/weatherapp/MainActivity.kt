@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("CLAIRE WEATHER", "onCreate called")
 
         tempTextview = findViewById(R.id.temperatureTextview)
         cityTextview = findViewById(R.id.cityTextview)
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         weatherTextview = findViewById(R.id.weatherTextview)
         weatherImageview = findViewById(R.id.weatherImageview)
 
-        Log.d("CLAIRE WEATHER", "onCreate called 2")
         getWeather()
 
         // Registering a context menu when the user clicks on the city name
@@ -51,12 +49,9 @@ class MainActivity : AppCompatActivity() {
     private fun getWeather() {
 
         val queue = Volley.newRequestQueue(this)
-        Log.d("CLAIRE WEATHER", "getWeather called")
 
         val requestObject = JsonObjectRequest(Request.Method.GET, url, null,
             { response ->
-                Log.d("CLAIRE WEATHER Response", response.toString())
-                Log.d("CLAIRE WEATHER", "In try block")
                 try {
                     val mainJSONObject: JSONObject = response.getJSONObject("main")
                     val temperature: String = Math.round(mainJSONObject.getDouble("temp")).toString()
@@ -83,7 +78,6 @@ class MainActivity : AppCompatActivity() {
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
-                    Log.e("WEATHER Error", e.toString())
                     tempTextview.setText("Try block didnt work!")
                 }
             },
@@ -103,12 +97,14 @@ class MainActivity : AppCompatActivity() {
         return formattedDate
     }
 
+    // This is creating the context menu
     override fun onCreateContextMenu(menu: ContextMenu?,
                                      v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.context_menu, menu)
     }
 
+    // the context menu displays when the user long-clicks on the city name
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.change_locations -> {
@@ -120,6 +116,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // This function displays the CItyFragment in the UI by starting a fragment transaction
+    // and uses replace to put the CityFragment in the fragmentContainerView container, and then
+    // commits the transaction applying the changes
     private fun showCityListFragment() {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainerView, CityFragment())
