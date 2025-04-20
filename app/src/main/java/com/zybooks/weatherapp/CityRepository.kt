@@ -21,7 +21,7 @@ class CityRepository private constructor(context: Context) {
     // The init block reads a list of city names from string resources and populates cityList
     // with corresponding City objects.
     init {
-        val cities = context.resources.getStringArray(R.array.Cities)
+        val cities = context.resources.getStringArray(R.array.cities_list)
         for (i in cities.indices) {
             cityList.add(City(cities[i]))
         }

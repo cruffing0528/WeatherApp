@@ -11,7 +11,7 @@
     <string name="city_name">city name</string>
     <string name="imagebutton">imageButton</string>
 
-    <string-array name="Cities">
+    <string-array name="cities_list">
         <item>New York</item>
         <item>Los Angeles</item>
         <item>Chicago</item>
@@ -30,6 +30,21 @@
         <item>Sacramento</item>
         <item>Folsom</item>
         <item>Boca Raton</item>
+    </string-array>
+
+    <string-array name="raining_sound">
+        <item>@drawable/icon_rain</item>
+        <item>@drawable/icon_showerrain</item>
+        <item>@drawable/icon_thunderstorm</item>
+    </string-array>
+
+    <string-array name="windy_sound">
+        <item>@drawable/icon_brokenclouds</item>
+        <item>@drawable/icon_fewclouds</item>
+        <item>@drawable/icon_mist</item>
+        <item>@drawable/icon_overcastclouds</item>
+        <item>@drawable/icon_scatteredclouds</item>
+        <item>@drawable/icon_snow</item>
     </string-array>
 
 </resources>

@@ -1,8 +1,8 @@
 package com.zybooks.weatherapp
 
-import android.animation.AnimatorInflater
-import android.animation.AnimatorSet
+import android.content.res.Resources
 import android.icu.util.Calendar
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var weatherTextview: TextView
     private lateinit var weatherImageview: ImageView
 
-    private val url = "http://api.openweathermap.org/data/2.5/weather?q=San Diego&appid=97d7fec7fb5625168efda6ff1f0a2b9b&units=Imperial"
+    private var mediaPlayer: MediaPlayer? = null
+
+    private val url = "http://api.openweathermap.org/data/2.5/weather?q=Folsom&appid=97d7fec7fb5625168efda6ff1f0a2b9b&units=Imperial"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +81,8 @@ class MainActivity : AppCompatActivity() {
                     weatherImageview.setOnClickListener {
                         val animation = AnimationUtils.loadAnimation(this, R.anim.bounce)
                         weatherImageview.startAnimation(animation)
+                        Log.v("Icon resource id is ", "Icon resource id is " + iconResourceId.toString())
+                        playSound(iconResourceId)
                     }
 
 
@@ -95,6 +99,65 @@ class MainActivity : AppCompatActivity() {
         )
 
         queue.add(requestObject)
+    }
+
+    private fun playSound(iconResourceId: Int) {
+        // Release any previous MediaPlayer instance
+        mediaPlayer?.release()
+        mediaPlayer = null
+
+        // Create a MediaPlayer instance for each image
+        val rainSound = MediaPlayer.create(this, R.raw.rain_sound)
+        val sunnySound = MediaPlayer.create(this, R.raw.sunny_sound)
+        val windSound = MediaPlayer.create(this, R.raw.wind_sound)
+
+        // Assign the media player to the correct sound
+        if(hasRainSound(resources, iconResourceId)) {
+            mediaPlayer = rainSound
+        } else if (hasWindSound(resources, iconResourceId)) {
+            mediaPlayer = windSound
+        } else {
+            mediaPlayer = sunnySound
+        }
+
+        mediaPlayer?.start()
+
+        mediaPlayer?.setOnCompletionListener {
+            it.release()
+            mediaPlayer = null
+        }
+    }
+
+    private fun hasRainSound(resources: Resources, weatherImageResourceID: Int): Boolean {
+        val rainSoundArray = resources.obtainTypedArray(R.array.raining_sound)
+        var hasSound = false
+
+        for (i in 0 until rainSoundArray.length()) {
+            val rainSoundResourceId = rainSoundArray.getResourceId(i, 0)
+            if (rainSoundResourceId == weatherImageResourceID) {
+                hasSound = true
+                break
+            }
+        }
+
+        rainSoundArray.recycle()
+        return hasSound
+    }
+
+    private fun hasWindSound(resources: Resources, weatherImageResourceID: Int): Boolean {
+        val windSoundArray = resources.obtainTypedArray(R.array.windy_sound)
+        var hasSound = false
+
+        for (i in 0 until windSoundArray.length()) {
+            val windSoundResourceId = windSoundArray.getResourceId(i, 0)
+            if (windSoundResourceId == weatherImageResourceID) {
+                hasSound = true
+                break
+            }
+        }
+
+        windSoundArray.recycle()
+        return hasSound
     }
 
     private fun getDate(): String {
