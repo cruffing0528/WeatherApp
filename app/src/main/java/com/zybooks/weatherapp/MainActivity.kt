@@ -1,11 +1,14 @@
 package com.zybooks.weatherapp
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
         // Registering a context menu when the user clicks on the city name
         registerForContextMenu(cityTextview)
-
     }
 
     // This function retrieves weather data from a weather API, parses the JSON response, and updates
@@ -73,6 +75,11 @@ class MainActivity : AppCompatActivity() {
                         packageName
                     )
                     weatherImageview.setImageResource(iconResourceId)
+                    // Bounce animation is triggered when the weather image is clicked
+                    weatherImageview.setOnClickListener {
+                        val animation = AnimationUtils.loadAnimation(this, R.anim.bounce)
+                        weatherImageview.startAnimation(animation)
+                    }
 
 
 

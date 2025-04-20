@@ -9,6 +9,7 @@
 
     <string name="change_locations">Change Locations</string>
     <string name="city_name">city name</string>
+    <string name="imagebutton">imageButton</string>
 
     <string-array name="Cities">
         <item>New York</item>

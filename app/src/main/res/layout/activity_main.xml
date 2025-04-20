@@ -79,7 +79,10 @@
         android:contentDescription="@string/weather_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_brokenclouds" />
+        app:srcCompat="@drawable/icon_brokenclouds"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
