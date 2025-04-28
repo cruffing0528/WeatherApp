@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private var locationRequest: LocationRequest? = null
     private var locationCallback: LocationCallback? = null
 
-    private val API_KEY = "AIzaSyBhFReBS3QWewxVDf2-7gt7jkeP8GZ1enw";
+    private val API_KEY = "<add-key-here>";
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
